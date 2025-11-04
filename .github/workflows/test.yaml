@@ -13,6 +13,7 @@ jobs:
             node-version: '18'
         - name: Install dependencies
         # npm ci will do a clean install of dependencies
+        # and is preferred for CI environments
           run: npm ci
         - name: Run tests
           run: npm test
