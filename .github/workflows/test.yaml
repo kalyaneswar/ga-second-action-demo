@@ -1,11 +1,13 @@
 name: Test Project
 # push:
-on : push
+on : [push, workflow_dispatch]
 jobs:
     test:
         runs-on: ubuntu-latest
         steps: 
         - name: Checkout code
+        # uses do the checkout action to clone the repo
+        # runs do the commands which we want to execute whereas uses do the actions
           uses: actions/checkout@v3
         - name: Set up NodeJS
           uses: actions/setup-node@v3
@@ -19,7 +21,7 @@ jobs:
           run: npm test
     deploy:
         runs-on: ubuntu-latest
-        # needs: test
+        needs: test
         steps:
         - name: Checkout code
           uses: actions/checkout@v3
